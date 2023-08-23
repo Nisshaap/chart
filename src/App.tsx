@@ -9,9 +9,9 @@ interface DataItem {
 
 // Function to generate dynamic RGB colors
 const predefinedColors: Record<string, string> = {
-  Alpha: 'green',
-  Beta: 'blue',
-  Gamma: 'red',
+  Alpha: 'rgba(0, 255, 0, 1)',  // Green with full opacity
+  Beta: 'rgba(0, 0, 255, 1)',   // Blue with full opacity
+  Gamma: 'rgba(255, 0, 0, 1)',  // Red with full opacity
 };
 
 const generateColor = (name: string): string => {
@@ -28,16 +28,16 @@ const generateColor = (name: string): string => {
 
 // Sample data
 const data1: DataItem[] = [
-  { name: 'Alpha', value: 10, color: generateColor('Alpha')}, // Using predefined color
-  { name: 'Beta', value: 25, color: generateColor('Beta')  }, // Using predefined color
-  { name: 'Gamma', value: 30, color: generateColor('Gamma') }, // Using predefined color
+  { name: 'Alpha', value: 10, color: predefinedColors['Alpha'] },
+  { name: 'Beta', value: 25, color: predefinedColors['Beta'] },
+  { name: 'Gamma', value: 30, color: predefinedColors['Gamma'] },
   { name: 'Delta', value: 70, color: generateColor('Delta') }, // Using generated color
 ];
 
 const data2: DataItem[] = [
-  { name: 'Alpha', value: 5, color: generateColor('Alpha') }, // Using predefined color
-  { name: 'Beta', value: 12, color: generateColor('Beta') }, // Using predefined color
-  { name: 'Gamma', value: 18, color: generateColor('Gamma') }, // Using predefined color
+  { name: 'Alpha', value: 5, color: predefinedColors['Alpha'] },
+  { name: 'Beta', value: 12, color: predefinedColors['Beta'] },
+  { name: 'Gamma', value: 18, color: predefinedColors['Gamma'] },
   { name: 'Delta', value: 19, color: generateColor('Delta') }, // Using generated color
 ];
 
@@ -45,7 +45,7 @@ const App: React.FC = () => {
   const chartConfig = {
     data: data1,
     angleField: 'value',
-    colorField: 'name',
+    colorField: 'color',
     radius: 0.8,
     label: {
       type: 'outer',
@@ -54,18 +54,25 @@ const App: React.FC = () => {
         fill: '#333',
         fontSize: 14,
       },
+      colorField: 'color', // Use colorField to specify the data field containing colors
+    color: (colorField: string) => {
+      return colorField; // This function is used to determine the color based on the colorField value
+    },
     },
   };
+
+  const data1Colors = data1.map(item => item.color);
+  const data2Colors = data2.map(item => item.color);
 
   return (
     <div style={{ display: 'flex' }}>
       <div style={{ flex: 1 }}>
         <h2>Chart 1</h2>
-        <Pie {...chartConfig} />
+        <Pie {...chartConfig} colorField="name"  color={data1.map(item => item.color || generateColor(item.name))}/>
       </div>
       <div style={{ flex: 1 }}>
         <h2>Chart 2</h2>
-        <Pie {...chartConfig} data={data2} />
+        <Pie {...chartConfig} data={data2} colorField="name" color={data2.map(item => item.color || generateColor(item.name))} />
       </div>
     </div>
   );
