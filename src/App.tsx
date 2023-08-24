@@ -61,8 +61,7 @@ const App: React.FC = () => {
     },
   };
 
-  const data1Colors = data1.map(item => item.color);
-  const data2Colors = data2.map(item => item.color);
+  
 
   return (
     <div style={{ display: 'flex' }}>
