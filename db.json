@@ -1,0 +1,11 @@
+{
+    "downloads": [
+      {
+        "id": 1,
+        "name": "example1-file.txt",
+        "url": "http://localhost:3001/downloads/1"
+      }
+     
+    ]
+  }
+  

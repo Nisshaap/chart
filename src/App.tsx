@@ -28,17 +28,17 @@ const generateColor = (name: string): string => {
 
 // Sample data
 const data1: DataItem[] = [
-  { name: 'Alpha', value: 10, color: predefinedColors['Alpha'] },
-  { name: 'Beta', value: 25, color: predefinedColors['Beta'] },
-  { name: 'Gamma', value: 30, color: predefinedColors['Gamma'] },
-  { name: 'Delta', value: 70, color: generateColor('Delta') }, // Using generated color
+  { name: 'Alpha', value: 10 },
+  { name: 'Beta', value: 25 },
+  { name: 'Gamma', value: 30 },
+  { name: 'Delta', value: 70 }, 
 ];
 
 const data2: DataItem[] = [
-  { name: 'Alpha', value: 5, color: predefinedColors['Alpha'] },
-  { name: 'Beta', value: 12, color: predefinedColors['Beta'] },
-  { name: 'Gamma', value: 18, color: predefinedColors['Gamma'] },
-  { name: 'Delta', value: 19, color: generateColor('Delta') }, // Using generated color
+  { name: 'Alpha', value: 5 },
+  { name: 'Beta', value: 12 },
+  { name: 'Gamma', value: 18 },
+  { name: 'Delta', value: 19 }, 
 ];
 
 const App: React.FC = () => {

@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ParentComponent from './ParentComponent';
+import MockApiDownload from './DownloadLink';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,6 +13,7 @@ root.render(
   <React.StrictMode>
     <App />
     <ParentComponent/>
+    <MockApiDownload/>
   </React.StrictMode>
 );
 
